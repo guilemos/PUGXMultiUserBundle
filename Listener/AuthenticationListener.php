@@ -40,8 +40,11 @@ class AuthenticationListener implements EventSubscriberInterface
 
     protected function discriminate($user)
     {
-        $class = ClassUtils::getClass($user);
-        $this->userDiscriminator->setClass($class, true);
+        if(is_object($user))
+        {
+            $class = ClassUtils::getClass($user);
+            $this->userDiscriminator->setClass($class, true);
+        }
     }
 
     /**
